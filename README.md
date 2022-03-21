@@ -17,4 +17,7 @@ clone the repo:
  
  `bash install.sh`  
  
+## Can I contribute?
 
+Of course, it's what we want
+If you wish to contribute to a module or give your own, you can, and if you don't want to do the integration with the main rust CLI, just leave a note for it to be done :)
