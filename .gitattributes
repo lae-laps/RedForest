@@ -4,5 +4,5 @@
 
 
 *.json linguist-detectable=true
-*.json linguist-language=Lua
+*.json linguist-language=JSON
 
