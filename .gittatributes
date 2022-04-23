@@ -2,4 +2,4 @@
 *.yml linguist-language=YAML
 
 *.toml linguist-detectable=true
-*.toml linguist-language=TOML
+*.toml linguist-language=Toml

@@ -1,4 +1,15 @@
 // interface.go
+
+/*
+ * In the event of a new module being added either by the original devs or by contributors to
+ * RedForest, an entry should be added here, in the corresponding menu. Any further CLI interfaces
+ * for specific tools should not be included here. This file should not be extended beyond the
+ * point of including launchers for each module or new sections -> This allows for all the modules
+ * to be decentralized and the modules to be written each in their own language. It is recomended
+ * to separe your own modules into files and to have a main or interface file to call with your
+ * launcher here.
+ */
+
 package main
 
 import (
