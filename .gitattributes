@@ -1,8 +1,0 @@
-
-*.toml linguist-detectable=true
-*.toml linguist-language=TOML
-
-
-*.json linguist-detectable=true
-*.json linguist-language=JSON
-
