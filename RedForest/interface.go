@@ -77,23 +77,25 @@ version .... shows the current version of the tool
 func parseExpression (expression string) {
     if len(expression) < 2 {
         Printf("[#] ~ Cannot validate an empty string\n", 9)
-    } else {
-        sliced := strings.Fields(expression)
-        switch sliced[0] {
-            case "exit":
-                Printf("Exiting...\n", 8)
-                os.Exit(0)
-            case "help":
-                help(sliced)
-            case "clear":
-                ClearScreen()
-            case "dnslookup":
-                DnsLookupCaller(expression)
-            case "banner":
-                banner()
-            default:
-                Printf("[#] ~ Invalid expression -> use help to view usage of tool\n", 9)
-        }
+        return
+    }
+    sliced := strings.Fields(expression)
+    switch sliced[0] {
+        case "exit":
+            Printf("Exiting...\n", 8)
+            os.Exit(0)
+        case "help":
+            help(sliced)
+        case "clear":
+            ClearScreen()
+        case "dnslookup":
+            DnsLookupCaller(sliced)
+        case "banner":
+            banner()
+        case "map":
+            PortScannerCaller(sliced)
+        default:
+            Printf("[#] ~ Invalid expression -> use help to view usage of tool\n", 9)
     }
 }
 
