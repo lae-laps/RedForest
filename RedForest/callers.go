@@ -4,6 +4,7 @@ package main
 import (
     "fmt"
     "strconv"
+   // "time"
 )
 
 func temporal(port int) {
@@ -21,23 +22,33 @@ func PortScannerCaller(sliced []string) {
     // iterate over sliced, chech if strings start with - and if true look inside them for specific letters
 
     minPort := 1
-    maxPort := 1000
-    timeout := 100
+    maxPort := 65535 
+    timeout := 600
     protocol := "tcp"
 
     data.timeout = timeout
     data.protocol = protocol
 
-    var openPorts []int
-    closedPortsCounter := 0
+    //var openPorts []int
+    //closedPortsCounter := 0
 
     for i := minPort; i <= maxPort; i++ {
-        Printf("-", 5)
+//        Printf("-", 5)
         data.port = i
-        result := ScanPort(data)
+        
+        
+      //  start := time.Now()
+        //result := ScanPort(data)
+        str := strconv.Itoa(i)
+        Printf(str + "\n", 6)
+    //    total := time.Since(start)
+
+    /*
         if result.status == true { // port is open
+            fmt.Printf("Scanning Open port %d took -> %s\n", i, total)
             openPorts = append(openPorts, result.port)
         } else {
+            //fmt.Printf("Scanning Closed port %d took -> %s\n", i, total)
             closedPortsCounter ++
         }
     }
@@ -48,7 +59,8 @@ func PortScannerCaller(sliced []string) {
         portStr := strconv.Itoa(port)
         Printf(portStr + ": OPEN\n", 4)
     }
-
+*/
+    }
 }
 
 func DnsLookupCaller(sliced []string) {

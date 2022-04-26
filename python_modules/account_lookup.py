@@ -1,11 +1,8 @@
 #!/bin/python
 
-print("tonto")
-
 import requests
 from requests.structures import CaseInsensitiveDict
 
-print("tonto 2")
 
 headers = CaseInsensitiveDict()
 headers["Connection"] = "keep-alive"
