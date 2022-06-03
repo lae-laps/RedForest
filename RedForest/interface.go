@@ -94,6 +94,10 @@ func parseExpression (expression string) {
             banner()
         case "map":
             PortScannerCaller(sliced)
+        case "webscan":
+//            WebScanCaller(sliced) // TODO: Implement this 
+        case "usearch": // user searcher
+            userSearcherCaller(sliced)
         default:
             Printf("[#] ~ Invalid expression -> use help to view usage of tool\n", 9)
     }
