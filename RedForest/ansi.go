@@ -53,7 +53,7 @@ func Printf(content string, color int) {
 func PrintBold(content string, color int) {
     colorStr := strconv.Itoa(color)
     escape := "\u001b[1m\033[38;5;" + colorStr + "m" + content + "\033[m\u001b[0m"
-    fmt.Println(escape)
+    fmt.Printf(escape)
 }
 
 func PrintBackground(content string, backgroundColor int) {

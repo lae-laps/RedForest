@@ -21,7 +21,9 @@ func PortScannerCaller(sliced []string) {
     if len(sliced) > 1 {
         
         target := sliced[len(sliced) - 1]  
-        Printf("[*] ~ Locked target to -> <" + target + ">\n", 6)
+        Printf("[*] ", 6)
+        fmt.Print("Locked target to -> ")
+        Printf("<" + target + ">\n", 6)
        
         match, err := regexp.MatchString(`^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.){3}(25[0-5]|(2[0-4]|1\d|[1-9]|)\d)$`, target)
 
@@ -31,7 +33,9 @@ func PortScannerCaller(sliced []string) {
             if match {
                 data.target = target 
             } else {
-                Printf("[*] ~ Domain provided -> performing DNS Query...\n", 2)
+                Printf("[*] ", 220)
+                fmt.Printf("Domain provided -> ") 
+                Printf("performing DNS Query...\n", 220)
                 //check if result is valid
                 ip := DnsQuery(target)
                 if len(ip) > 0 {
@@ -40,7 +44,9 @@ func PortScannerCaller(sliced []string) {
                     Printf("[!] ~ Index out of range -> locking target to domain\n", 4)
                     data.target = target
                 }
-                Printf("[*] ~ Locked IP target to -> <" + data.target + ">\n", 5)
+                Printf("[*] ", 118)
+                fmt.Print("Locked IP target to -> ") 
+                Printf("<" + data.target + ">\n", 118)
             }
         } 
     } else {
@@ -99,15 +105,23 @@ func PortScannerCaller(sliced []string) {
     }
     
 
-    Printf("Found " + strconv.Itoa(closedPortsCounter) + " closed ports\n", 4)
+    fmt.Println("PORT  STATE")
     for _, port := range openPorts {
         portStr := strconv.Itoa(port)
-        Printf(portStr + ": OPEN\n", 4)
+        
+        for len(portStr) < 6 {
+            portStr += " " 
+        }
+
+        fmt.Println(portStr + "open")
     }
 
     scanTotalTime := time.Since(scanStartTime)
     scanTotalTimeString := fmt.Sprintf("%s", scanTotalTime.Round(10*time.Millisecond))
-    Printf("[*] Scan took " + scanTotalTimeString + "\n", 6)
+    Printf("[=] ", 21) 
+    fmt.Println("Found " + strconv.Itoa(closedPortsCounter) + " closed ports")
+    Printf("[=] ", 21) 
+    fmt.Println("Scan took " + scanTotalTimeString)
 }
 
 /*

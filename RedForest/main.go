@@ -12,9 +12,19 @@
 package main
 
 import (
+    "os"
 )
 
 func main() {
-    CommandInterface()
+    
+    if len(os.Args) == 2 {
+        if os.Args[1] == "--cli" {
+            CommandInterface()
+        } else if os.Args[1] == "--menu" {
+            //MenuInterface()
+        }
+    } else {
+        CommandInterface()
+    }
 }
 
