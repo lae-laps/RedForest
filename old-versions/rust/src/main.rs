@@ -1,7 +1,7 @@
 /*
  +---------------------+
  |  RedForest toolkit  |
- | by laelaps and Wans |
+ |      by laelaps     |
  |   written in rust   |
  +---------------------+
 */
