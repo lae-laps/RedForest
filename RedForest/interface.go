@@ -104,7 +104,7 @@ func parseExpression (expression string) {
 }
 
 func CommandInterface() {
-//    banner()
+    banner()
     for {
         expression := Input("redforest > ", 197)
         parseExpression(expression)

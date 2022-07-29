@@ -1,77 +1,120 @@
 // ANSI-utils package for CLI utils
 
 /* Methods description
-    * Println -> print with ANSI escape code color -> ( content string, color int ) 
-    * PrintBackgound -> print with ANSI escape code background ( content string, backgroundColor int )
-    * PrintBold -> print with ANSI escape code color but in bold ( content string, color int )
+    * print -> print with ANSI escape code color -> ( content string, color int ) 
+    * printBackgound -> print with ANSI escape code background ( content string, backgroundColor int )
+    * printBold -> print with ANSI escape code color but in bold ( content string, color int )
  */
 
 // ansi.go
+
+/*
+TODO: Use runtime.GOOS to check platform and use correct escapes
+*/
+
 package main 
 
 import (
     "os"
-    "fmt"
+    "fmt"    
     "time"
     "bufio"
+    "strings"
     "strconv"
+//    "golang.org/x/term"
 )
 
-type options_menu []string
-
-func (opt options_menu) show() {
-    for i, content := range opt {
-        i_str := strconv.Itoa(i)
-        fmt.Print("[" + i_str + "] ~ " + content + "\n")
-    }
+type Tty struct {
+        state *term.State
+        line  string
 }
 
-func Input(prompt string, color int) string {
-    Printf(prompt, color)
-    in := bufio.NewReader(os.Stdin)
-    line, err := in.ReadString('\n')
-    if err != nil {
-        Printf("Error reading line\n", 9)
+func readPassword(tty chan Tty, fd int) {
+        state, _ := term.MakeRaw(fd)
+        t := term.NewTerminal(os.Stdin, "")
+        f := func(s string, i int, r rune) (string, int, bool) {
+                //"•"
+                fmt.Print("*")
+                return s, i, false
+        }
+
+        t.AutoCompleteCallback = f
+        line, _ := t.ReadPassword("")
+        tty <- Tty{state: state, line: line}
+}
+
+func inputPassword() string {
+        tty := make(chan Tty)
+        fd := int(os.Stdin.Fd())
+        go readPassword(tty, fd)
+        t := <-tty
+        close(tty)
+        term.Restore(fd, t.state)
+        password := t.line
+        return password
+}
+
+func input(prompt string, color int) string {
+    print(prompt, color)
+         
+    in := bufio.NewReader(os.Stdin)                                                                                                                                                                          
+    line, err := in.ReadString('\n')                                                                                                                                                                         
+    if err != nil {                                                                                                                                                                                          
+        printRuntimeError("Error reading line")
     }
+    line = strings.Replace(line, "\n", "", -1) // strip chars from line
     return line
 }
 
-func PrintUserError(content string) {
-    fmt.Println("\033[38;5;4m[#] ~ " + content + "\033[m")
+func printUserError(content string) {
+    print("[!] ", 166)
+    print(content, 7)
 }
 
-func PrintRuntimeError(content string) {
-    fmt.Println("\033[38;5;9m[-] ~ " + content + "\033[m")
+func printRuntimeError(content string) {
+    print("[#] ", 1)
+    print(content, 7)
 }
 
-func Printf(content string, color int) {
+func print(content string, color int) {
     colorStr := strconv.Itoa(color)
     escape := "\033[38;5;" + colorStr + "m" + content + "\033[m"
-    fmt.Printf(escape)
+    fmt.Print(escape)
 }
 
-func PrintBold(content string, color int) {
+func printInfo(info string) {
+    print("[+] ", 10)
+    print(info, 7)
+}
+
+func printPrompt(prompt string) {
+    print("[>] ", 4)
+    print(prompt, 7)
+}
+
+func printBold(content string, color int) {
     colorStr := strconv.Itoa(color)
     escape := "\u001b[1m\033[38;5;" + colorStr + "m" + content + "\033[m\u001b[0m"
     fmt.Printf(escape)
 }
 
-func PrintBackground(content string, backgroundColor int) {
+func printBackground(content string, backgroundColor int) {
     colorStr := strconv.Itoa(backgroundColor)
     escape := "\033[48;5;" + colorStr + "m" + content + "\033[m"
     fmt.Println(escape)
 }
 
-func ClearScreen() {
+func clearScreen() {
     fmt.Print("\u001b[2J")
     fmt.Printf("\u001b[1;1f")
 }
 
 // idk what this is
-func Charging() {
+func chargingAnimation(interval int, color int) {
     for i := 0; i < 100; i++ {
         counter := strconv.Itoa(i + 1) 
-        fmt.Print("\u001b[1000D" + counter + "%")
-        time.Sleep(30 * time.Millisecond)
+        print("\u001b[1000D" + counter + "%", color)
+        time.Sleep(time.Duration(interval) * time.Millisecond)
     }
 }
+
