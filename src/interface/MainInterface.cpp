@@ -1,16 +1,11 @@
 //#include "MainInterface.h"
 //#include "commands/Command.cpp"
 
-#include <iostream>
-
+#include "commands/Command.h"
 #include "MainInterface.h"
 
 void MainInterface::run() {
-    /*Command command;
+    Command command;
     command.displayHelpMessage();
-    */
-
-    std::cout << "test" << std::endl;
-
 }
 

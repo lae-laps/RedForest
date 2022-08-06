@@ -8,3 +8,5 @@ This is a project under development
 
 `make install`
 
+![error displaying image -> media/footer.svg](images/desktop_grey.png?raw=true "Title")
+

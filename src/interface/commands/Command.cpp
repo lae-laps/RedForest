@@ -8,9 +8,6 @@
 
 #include "Command.h"
 
-bool replaceBoldTextInHelpMessage;
-std::string helpMessage;
-
 void Command::setHelpMessage(std::string message) {
     helpMessage = message;
 }
@@ -21,17 +18,14 @@ std::string Command::getHelpMessage() {
 
 Command::Command() {
     replaceBoldTextInHelpMessage = false;
+    setHelpMessage("testing");
 }
 
 void Command::displayHelpMessage() {
-
-    //temportal pleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaseeeeeeeeeeeeeeeeeeeeeeeeee
-    setHelpMessage("test");
-
-
-    if (replaceBoldTextInHelpMessage) {
+    /*if (replaceBoldTextInHelpMessage) {
         helpMessage = std::regex_replace(helpMessage, std::regex("**"), ""); // TODO: Make this work
-    } 
+    } */
     std::cout << helpMessage << std::endl;
+    std::cout << "fmdslkfmlkdsmf";
 } 
 
