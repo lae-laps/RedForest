@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ main.cpp interface/interface.cpp -o main
+gcc main.c modules/dns/query.c interface/interface.c interface/ascii.c -o main
