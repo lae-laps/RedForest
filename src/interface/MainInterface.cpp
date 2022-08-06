@@ -1,7 +1,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-
+#include "Ascii.hpp"
 #include "MainInterface.hpp"
 #include "commands/Sock.hpp"
 
@@ -66,10 +66,10 @@ void MainInterface::parse() {
     }
     
     if (arr[0] == "sock") {
-        Sock sock;
-        int isValid = sock.setTarget(arr[1]);
-        cout << isValid << endl;
-        sock.connection(); 
+//        Sock sock;
+//        int isValid = sock.setTarget(arr[1]);
+ //       cout << isValid << endl;
+  //      sock.connection(); 
 
     } else if (arr[0] == "exit") {
         exit(0);
@@ -80,6 +80,7 @@ void MainInterface::run() {
     if (showBannerOnStartup) {
         banner();
     }
+    Ascii::throwUserError("testing some error");
     for (;;) {
         cout << prompt; 
 
