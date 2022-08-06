@@ -1,7 +1,7 @@
-#include "interface/MainInterface.hpp"
+#include "interface/Interface.hpp"
 
 int main(int argc, char **argv) {
-    MainInterface interface;
+    Interface interface;
     interface.run();
 }
 

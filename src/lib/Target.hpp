@@ -1,4 +1,5 @@
 #ifndef TARGET
+#define TARGET
 
 #include <iostream>
 
@@ -11,19 +12,21 @@ class Target {
         string getTarget();
         void setTargetValidity(int);
         int getTargetValidity();
+        void setTargetType(int);
+        int getTargetType();
 
     private:
         string target;
+        int targetType;
         int targetValidity;
 
-/* TARGET VALIDITY TABLE
-  -------------------------
-  | 0 | valid ipv4        |
-  | 1 | valid ipv6        |
-  | 2 | valid domain name |
-  | 3 | invalid           |
-  -------------------------
- */
+/* TARGET VALIDITY TABLE                TARGET TYPE TABLE
+  -------------------------             -------------------    
+  | 0 | valid ipv4 / ipv6 |             | 0 | ipv4 / ipv6 |
+  | 1 | valid domain name |             | 1 | domain name |
+  | 2 | invalid           |             | 2 | http(s)     |
+  -------------------------             -------------------
+*/
 
 };
 

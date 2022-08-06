@@ -1,10 +1,12 @@
 #ifndef SOCK
+#define SOCK
 
+#include "Command.hpp"
 #include "../../lib/Target.hpp"
 
-class Sock {
+class Sock : public Command {
     public:
-        void dialog(Target);
+        void dialog(string);
 };
 
 #endif

@@ -1,4 +1,5 @@
 #ifndef COMMAND
+#define COMMAND
 
 #include <iostream>
 

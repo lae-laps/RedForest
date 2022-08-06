@@ -1,12 +1,13 @@
-#ifndef MAIN_INTERFACE
+#ifndef INTERFACE
+#define INTERFACE
 
 #include <iostream>
 
 using namespace std;
 
-class MainInterface {
+class Interface {
     public:
-        MainInterface();
+        Interface();
         void run();
         void banner();
         void setShowBannerOnStartup(bool);
@@ -15,16 +16,13 @@ class MainInterface {
         bool getUseAnsiEscapes();
         void setPromtp(string);
         string getPrompt();
-        void setExpression(string);
-        string getExpression();
        
-        void parse(); 
+        void parse(string); 
 
     private:
         bool showBannerOnStartup;
         bool useAnsiEscapes;
         string prompt;
-        string expression;
 };
 
 #endif
