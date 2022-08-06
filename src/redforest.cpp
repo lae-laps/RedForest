@@ -1,4 +1,4 @@
-#include "interface/MainInterface.h"
+#include "interface/MainInterface.hpp"
 
 int main(int argc, char **argv) {
     MainInterface interface;

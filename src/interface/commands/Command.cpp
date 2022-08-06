@@ -6,7 +6,7 @@
 #include <string>
 #include <iostream>
 
-#include "Command.h"
+#include "Command.hpp"
 
 void Command::setHelpMessage(std::string message) {
     helpMessage = message;
@@ -26,6 +26,5 @@ void Command::displayHelpMessage() {
         helpMessage = std::regex_replace(helpMessage, std::regex("**"), ""); // TODO: Make this work
     } */
     std::cout << helpMessage << std::endl;
-    std::cout << "fmdslkfmlkdsmf";
 } 
 

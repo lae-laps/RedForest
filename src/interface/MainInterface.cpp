@@ -65,9 +65,12 @@ void MainInterface::parse() {
         ++i;
     }
     
-    if (arr[0] == "soc") {
+    if (arr[0] == "sock") {
         Sock sock;
-        sock.run(); 
+        int isValid = sock.setTarget(arr[1]);
+        cout << isValid << endl;
+        sock.connection(); 
+
     } else if (arr[0] == "exit") {
         exit(0);
     }
