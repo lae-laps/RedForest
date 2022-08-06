@@ -7,13 +7,15 @@ redforest: redforest.cpp
 	g++ -o redforest redforest.o MainInterface.o Command.o Target.o Ascii.o
 
 release:
-	# Copy code from normal make
+	# run normal make
 	make
+	# strip debug symbols
 	strip redforest
 
 clean:
 	rm -f redforest *.o 
 
 install:
+	make release
 	cp redforest /usr/local/bin
 
