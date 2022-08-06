@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+cd src 
+make clean
 git add --all
 git status
 git commit -m "automatic commit > cli > at ./push.sh"
