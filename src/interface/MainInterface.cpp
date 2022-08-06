@@ -1,11 +1,16 @@
+//#include "MainInterface.h"
+//#include "commands/Command.cpp"
 
-class MainInterface {
-    private:
-        bool showBannerOnStartup
+#include <iostream>
 
-    public:
-        void main() {
-        
-        }
-};
+#include "MainInterface.h"
+
+void MainInterface::run() {
+    /*Command command;
+    command.displayHelpMessage();
+    */
+
+    std::cout << "test" << std::endl;
+
+}
 

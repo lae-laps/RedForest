@@ -6,30 +6,32 @@
 #include <string>
 #include <iostream>
 
-class Command {
-    private:
-        bool replaceBoldTextInHelpMessage;
-        std::string helpMessage;
+#include "Command.h"
 
-    protected:
-        void setHelpMessage(std::string message) {
-            helpMessage = message;
-        }
+bool replaceBoldTextInHelpMessage;
+std::string helpMessage;
 
-        std::string getHelpMessage() {
-            return helpMessage;
-        }
+void Command::setHelpMessage(std::string message) {
+    helpMessage = message;
+}
 
-    public:
-        Command() {
-            replaceBoldTextInHelpMessage = false;
-        }
-    
-        void displayHelpMessage() {
-            if (replaceBoldTextInHelpMessage) {
-                helpMessage = std::regex_replace(helpMessage, std::regex("**"), ""); // TODO: Make this work
-            } 
-            std::cout << helpMessage << std::endl;
-        } 
-};
+std::string Command::getHelpMessage() {
+    return helpMessage;
+}
+
+Command::Command() {
+    replaceBoldTextInHelpMessage = false;
+}
+
+void Command::displayHelpMessage() {
+
+    //temportal pleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaseeeeeeeeeeeeeeeeeeeeeeeeee
+    setHelpMessage("test");
+
+
+    if (replaceBoldTextInHelpMessage) {
+        helpMessage = std::regex_replace(helpMessage, std::regex("**"), ""); // TODO: Make this work
+    } 
+    std::cout << helpMessage << std::endl;
+} 
 
