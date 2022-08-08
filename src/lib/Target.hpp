@@ -17,8 +17,8 @@ class Target {
 
     private:
         string target;
-        int targetType;
-        int targetValidity;
+        unsigned short targetType;
+        unsigned short targetValidity;
 
 /* TARGET VALIDITY TABLE                TARGET TYPE TABLE
   -------------------------             -------------------    

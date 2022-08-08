@@ -9,6 +9,7 @@ class ascii {
     public:
         static void print(string);
         static void printUserError(string);
+        static void printRuntimeError(string);
 };
 
 #endif

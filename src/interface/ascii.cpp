@@ -1,15 +1,32 @@
 // ascii.cpp
 
-#include <iostream>
 #include "ascii.hpp"
 
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <boost/format.hpp>
+#include <boost/algorithm/string.hpp>
+
 using namespace std;
+using namespace boost::algorithm;
 
 void ascii::print(string text) {
-    cout << text << endl;
+    // \[\033[38;5;xm\] text \[\033[m\] 
+    text = replace_all_copy(text, "[END]", "\033[m");
+    text = replace_all_copy(text, "[RED]", "\033[38;5;1m");
+    text = replace_all_copy(text, "[GREEN]", "\033[38;5;2m");
+    text = replace_all_copy(text, "[YELLOW]", "\033[38;5;3m");
+    text = replace_all_copy(text, "[BLUE]", "\033[38;5;4m");
+    text = replace_all_copy(text, "[PURPLE]", "\033[38;5;5m");
+    cout << text;
 }
 
 void ascii::printUserError(string err) {
-    ascii::print("[RED][!][END] ");
+    ascii::print("[YELLOW][-][END] " + err + "\n");
+}
+
+void ascii::printRuntimeError(string err) {
+    ascii::print("[RED][!][END] " + err + "\n");
 }
 

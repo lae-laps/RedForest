@@ -37,7 +37,7 @@ string Interface::getPrompt() {
 // constructor
 
 Interface::Interface() {
-    setPromtp(">> ");
+    setPromtp("[PURPLE]>> [END]");
     setUseAnsiEscapes(true);
     setShowBannerOnStartup(false);
 }
@@ -59,13 +59,13 @@ void Interface::parse(string expression) {
     }
     
     if (arr[0] == "sock") {
-        //Sock sock;
-        //int isValid = sock.setTarget(arr[1]);
-        //cout << isValid << endl;
-        //sock.connection(); 
+        Sock sock;
+        sock.run(arr[1]); 
 
     } else if (arr[0] == "exit") {
         exit(0);
+    } else {
+        ascii::printUserError("Invalid expression");
     }
 }
 
@@ -76,7 +76,7 @@ void Interface::run() {
     for (;;) {
         string expression;
         
-        cout << prompt; 
+        ascii::print(prompt); 
 
         getline(cin, expression);
 

@@ -6,7 +6,8 @@
 
 class Sock : public Command {
     public:
-        void dialog(string);
+        void run(string);
+        int parseExpression(string);
 };
 
 #endif

@@ -28,3 +28,21 @@ void Command::displayHelpMessage() {
     std::cout << helpMessage << std::endl;
 } 
 
+int Command::parseExpression(string expression) {
+    /* STRUCTURE *
+    parse()
+    if (invalid) {
+        printErrorMessage();
+        return 1;
+    } else {
+        execute();
+        return 0;
+    }
+    */
+    return 0;
+}
+
+void Command::run() {
+    // run 
+}
+
