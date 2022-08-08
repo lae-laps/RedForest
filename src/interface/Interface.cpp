@@ -60,7 +60,7 @@ void Interface::parse(string expression) {
     
     if (arr[0] == "sock") {
         Sock sock;
-        sock.run(arr[1]); 
+        sock.run(expression); 
 
     } else if (arr[0] == "exit") {
         exit(0);

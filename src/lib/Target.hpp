@@ -8,15 +8,18 @@ using namespace std;
 class Target {
     public:
         Target();
-        int setTarget(string);
-        string getTarget();
+        int setPort(int);
+        int getPort();
+        int setHost(string);
+        string getHost();
         void setTargetValidity(int);
         int getTargetValidity();
         void setTargetType(int);
         int getTargetType();
 
     private:
-        string target;
+        unsigned int port;
+        string host;
         unsigned short targetType;
         unsigned short targetValidity;
 

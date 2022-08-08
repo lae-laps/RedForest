@@ -1,11 +1,13 @@
+CPP=g++
+
 redforest: redforest.cpp
-	g++ -c interface/Interface.cpp 
-	g++ -c interface/commands/Command.cpp
-	g++ -c interface/commands/Sock.cpp
-	g++ -c interface/ascii.cpp
-	g++ -c lib/Target.cpp
-	g++ -c redforest.cpp
-	g++ -o redforest redforest.o Interface.o Command.o Target.o ascii.o Sock.o
+	${CPP} -c interface/Interface.cpp 
+	${CPP} -c interface/commands/Command.cpp
+	${CPP} -c interface/commands/Sock.cpp
+	${CPP} -c interface/ascii.cpp
+	${CPP} -c lib/Target.cpp
+	${CPP} -c redforest.cpp
+	${CPP} -o redforest redforest.o Interface.o Command.o Target.o ascii.o Sock.o
 
 release:
 	# run normal make
@@ -24,4 +26,9 @@ run:
 	make
 	# Running ./redforest
 	./redforest
+
+no-obj:
+	make
+	# Cleaning Object Files
+	rm *o
 
