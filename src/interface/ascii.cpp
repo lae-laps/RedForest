@@ -30,3 +30,7 @@ void ascii::printRuntimeError(string err) {
     ascii::print("[RED][!][END] " + err + "\n");
 }
 
+void ascii::printInfo(string info) {
+    ascii::print("[BLUE][*][END] " + info + "\n");
+}
+

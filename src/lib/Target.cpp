@@ -8,13 +8,21 @@
 using namespace std;
 using namespace boost::algorithm;
 
-int Target::setPort(int value) {
+Target::Target() {
+}
+
+bool Target::setPort(int value) {
     try {
-        port = value;
-        return 0;
+        if (value <= 65535 && value >= 0) { 
+            port = value;
+        } else {
+            ascii::printUserError("Invalid port");
+            return false;
+        }
+        return true;
     } catch(...) {
-        ascii::printUserError("Invalid port - int out of bounds"); 
-        return 1;
+        ascii::printUserError("Invalid port"); 
+        return false;
     }
 }
 
@@ -37,14 +45,16 @@ int Target::setHost(string value) {
     } else {
         return_value = 2;
     }
-    setTargetValidity(return_value);
-    if (getTargetValidity() != getTargetType()) {
-        ascii::printUserError("Invalid Target");
+    if (return_value == 2) {
+        return_value = 3;
+        ascii::printUserError("Invalid target");
     }
+    setTargetValidity(return_value);
     return getTargetValidity();
 }
 
-Target::Target() {
+string Target::getHost() {
+    return host;
 }
 
 void Target::setTargetValidity(int value) {

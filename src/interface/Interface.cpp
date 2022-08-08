@@ -37,7 +37,7 @@ string Interface::getPrompt() {
 // constructor
 
 Interface::Interface() {
-    setPromtp("[PURPLE]>> [END]");
+    setPromtp("[PURPLE]redforest >> [END]");
     setUseAnsiEscapes(true);
     setShowBannerOnStartup(false);
 }
@@ -57,15 +57,18 @@ void Interface::parse(string expression) {
         ssin >> arr[i];
         ++i;
     }
-    
-    if (arr[0] == "sock") {
+   
+    if (arr[0] == "") {
+        return;
+    } 
+    else if (arr[0] == "sock") {
         Sock sock;
         sock.run(expression); 
 
     } else if (arr[0] == "exit") {
         exit(0);
     } else {
-        ascii::printUserError("Invalid expression");
+        ascii::printUserError("Unknown command: " + arr[0]);
     }
 }
 

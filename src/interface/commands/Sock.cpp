@@ -28,7 +28,7 @@ void Sock::run(string input) {
         TcpClient client;
         client.setHost(target.getHost());
         client.setPort(target.getPort());
-        client.send(message);
+        client.send("sdlkmfldsmf");
     }
 }
 
@@ -45,13 +45,17 @@ bool Sock::parseExpression(string expression) {
     try {
         portInt = stoi(arr[2]); 
     } catch(...) {
-        ascii::printUserError("Invalid target port");
+        ascii::printUserError("Invalid port");
         return false;
     }
     int validHost = target.setHost(arr[1]);
     int validPort = target.setPort(portInt);
-    if (validHost >= 2) {
-        ascii::printUserError("Invalid target address");
+    if (validHost == 2) {
+        return false;
     }
+    if (not validPort) {
+        return false; 
+    }
+    return true;
 }
 

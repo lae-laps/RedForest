@@ -8,6 +8,7 @@ using namespace std;
 class ascii {
     public:
         static void print(string);
+        static void printInfo(string);
         static void printUserError(string);
         static void printRuntimeError(string);
 };

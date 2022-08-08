@@ -8,7 +8,7 @@ using namespace std;
 class Target {
     public:
         Target();
-        int setPort(int);
+        bool setPort(int);
         int getPort();
         int setHost(string);
         string getHost();
