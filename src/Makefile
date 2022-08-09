@@ -1,4 +1,4 @@
-CPP=g++
+CPP=g++ -Wall
 
 redforest: redforest.cpp
 	${CPP} -c interface/Interface.cpp 
