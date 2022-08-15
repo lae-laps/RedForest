@@ -1,22 +1,32 @@
 // HttpClient.cpp
 
-#include "HttpClient.hpp"
-
 #include <iostream>
 #include <asio.hpp>
-#include <asio/ip/address.hpp>
 #include <asio/ip/tcp.hpp>
+#include <boost/format.hpp>
 #include <asio/ts/buffer.hpp>
+#include <asio/ip/address.hpp>
 #include <asio/ts/internet.hpp>
 
+#include "../../interface/ascii.hpp"
+#include "HttpClient.hpp"
+
 using namespace std;
+
+HttpClient::HttpClient() {
+    // TODO: Do this
+}
+
+HttpClient::~HttpClient() {
+    // TODO: Do this
+}
 
 vector<char> vBuffer(20 * 1024);
 
 // this function uses a lambda function
 // it implements a buffer with a fixed size, and recursively grabs a buffer of data
 // only if the recieved data is not enough for one buffer
-void grabData(asio::ip::tcp::socket& socket) {
+void HttpClient::grabData(asio::ip::tcp::socket& socket) {
     socket.async_read_some(asio::buffer(vBuffer.data(), vBuffer.size()),
         [&](error_code ec, size_t length) {
         // this block of code contains what should happen with the retrieved data
@@ -31,7 +41,7 @@ void grabData(asio::ip::tcp::socket& socket) {
     );
 }
 
-int main() {
+void HttpClient::connection(string path, string address, int port) {
    
     // we create an Error Handler ( Error Code ) ASIO variable which we will use throuought the program to check for errors.
     // When an exception happens, the error code object defined bellow, will adopt that exception so we can handle or ignore it.
@@ -52,3 +62,67 @@ int main() {
     // the run function of the context runs the context and returns as soon as 
     // the context runs out of work to do
     thread thrContext = thread([&]() { context.run(); });
+
+    // an endpoint is something ASIO can connect TO
+    // here we create a TCP style endpoint
+    // the make_address() function converts a string version of an IP into ASIO ip
+    // we also pass the error code, and if there is an error, the ec will contain the error
+    asio::ip::tcp::endpoint endpoint(asio::ip::make_address(address, ec), port);
+
+    // we create a NETWORKING socket
+    // we asociate it to our ASIO object
+
+    asio::ip::tcp::socket socket(context);
+
+    // we tell our socket object to connect to our endpoint
+    socket.connect(endpoint, ec);
+
+    // here we check the error code
+    
+    if (!ec) {              // no error code
+        ascii::printInfo("Succesfull connection");
+        // cout << "Succesfull Connection" << endl;
+    } else {
+        // the message() method in our error code returns a string with our error
+        ascii::printRuntimeError("error while connecting to remote host: " + ec.message());
+        // cout << "error: " << ec.message() << endl;  
+    }
+
+    // is_open() getter method in sockets to determine if the socket is actively open
+    if (socket.is_open()) {
+
+
+        // we call our async function grabData();, which grabs the data and implements 
+        // what should happen on that data
+        // we call this function prematurely so we can give the capability to grab data before, 
+        // this way it doesnt immediately continue
+        grabData(socket);
+
+        // we create a raw string containing an HTTP request
+        
+        boost::format fmt = boost::format("GET %1% HTTP/1.1\nHost: %2%\nConnection: close\n\n") % path % address;
+
+        /*string httpRequest = 
+            "GET /index.html HTTP/1.1\n"
+            "Host: example.com\n"
+            "Connection: close\n\n";
+        */
+
+        string httpRequest = boost::str(fmt);
+
+        // we write to the socket via a asio::buffer()
+        // asio buffers take the content and lenght as shown below
+        socket.write_some(asio::buffer(httpRequest.data(), httpRequest.size()), ec);
+
+        // we join the ASIO context thread if it is joinable
+        context.stop();
+        if (thrContext.joinable()) {
+            thrContext.join();
+        }
+
+    }
+    // we detach the ASIO context thread after using it
+    // thrContext.detach();
+}
+
+

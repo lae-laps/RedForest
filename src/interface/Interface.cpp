@@ -5,6 +5,7 @@
 #include "../lib/Target.hpp"
 #include "Interface.hpp"
 #include "commands/Sock.hpp"
+#include "commands/Curl.hpp"
 
 using namespace std;
 
@@ -50,10 +51,10 @@ void Interface::banner() {
 
 void Interface::parse(string expression) {
 
-    string arr[10];
+    string arr[20];
     int i = 0;
     stringstream ssin(expression);
-    while (ssin.good() && i < 4){
+    while (ssin.good() && i < 4) {
         ssin >> arr[i];
         ++i;
     }
@@ -62,9 +63,11 @@ void Interface::parse(string expression) {
         return;
     } 
     else if (arr[0] == "sock") {
-        Sock sock;
-        sock.run(expression); 
-
+        Sock client;
+        client.run(expression); 
+    } else if (arr[0] == "curl") {
+        Curl client;
+        client.run(expression);
     } else if (arr[0] == "exit") {
         exit(0);
     } else {
