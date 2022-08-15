@@ -6,6 +6,11 @@ This is a project under development
 
 `make install`
 
+### Dependencies
+
+The project uses the [boost](https://www.boost.org/) and [ASIO](https://www.boost.org/doc/libs/1_75_0/doc/html/boost_asio.html) libraries.
+You might need to install these if you want to build the project from source.
+
 ![error displaying image -> media/footer.svg](media/footer.svg?raw=true "Title")
 
 
