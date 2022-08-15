@@ -1,5 +1,7 @@
 // HttpClient.cpp
 
+// TODO: Add try / catch blocks to this client
+
 #include <iostream>
 #include <asio.hpp>
 #include <asio/ip/tcp.hpp>
@@ -32,7 +34,7 @@ void HttpClient::grabData(asio::ip::tcp::socket& socket) {
         // this block of code contains what should happen with the retrieved data
             if (!ec) {
                 cout << "\n\nRead " << length << "bytes\n" << endl;
-                for (int i = 0; i < length; i++) {
+                for (int i = 0; (unsigned)i < length; i++) {
                     cout << vBuffer[i];
                 }
                 grabData(socket);
@@ -42,14 +44,23 @@ void HttpClient::grabData(asio::ip::tcp::socket& socket) {
 }
 
 void HttpClient::connection(string path, string address, int port) {
-   
+
+    cout << "got to client connection() method \n";
+
     // we create an Error Handler ( Error Code ) ASIO variable which we will use throuought the program to check for errors.
     // When an exception happens, the error code object defined bellow, will adopt that exception so we can handle or ignore it.
     asio::error_code ec;    
 
+    cout << "got to 1";
+
     // unique instance of ASIO - hides platform specific requirements
     // this object is the main ASIO context object, and will be run in a separate thread most of the time.
     asio::io_context context;       
+
+
+    cout << "got to 2";
+
+
     // since we are running our ASIO context in a separate thread to not block the main thread, 
     // the run instruction used in the context is then instructed to end the context when it has no
     // more instructions to do. The problem with this is that by the time we actually give real work
@@ -57,17 +68,30 @@ void HttpClient::connection(string path, string address, int port) {
     // some "fake" work to the context to keep it running while we dont give it our real work. 
     asio::io_context::work idleWork(context);
 
+    
+
+    cout << "got to 3";
+
     // here we run ASIO in a separate thread
     // This makes ASIO not block the main thread while performing ASYNC calls
     // the run function of the context runs the context and returns as soon as 
     // the context runs out of work to do
     thread thrContext = thread([&]() { context.run(); });
 
+
+    cout << "got to 4";
+
+
     // an endpoint is something ASIO can connect TO
     // here we create a TCP style endpoint
     // the make_address() function converts a string version of an IP into ASIO ip
     // we also pass the error code, and if there is an error, the ec will contain the error
     asio::ip::tcp::endpoint endpoint(asio::ip::make_address(address, ec), port);
+
+
+    cout << "got to 5";
+    
+
 
     // we create a NETWORKING socket
     // we asociate it to our ASIO object
@@ -79,14 +103,17 @@ void HttpClient::connection(string path, string address, int port) {
 
     // here we check the error code
     
-    if (!ec) {              // no error code
+ /*   if (!ec) {              // no error code
         ascii::printInfo("Succesfull connection");
         // cout << "Succesfull Connection" << endl;
     } else {
         // the message() method in our error code returns a string with our error
         ascii::printRuntimeError("error while connecting to remote host: " + ec.message());
+        
+        cout << ec.value();
+
         // cout << "error: " << ec.message() << endl;  
-    }
+    }  */
 
     // is_open() getter method in sockets to determine if the socket is actively open
     if (socket.is_open()) {

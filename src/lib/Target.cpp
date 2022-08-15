@@ -12,18 +12,22 @@ Target::Target() {
 }
 
 bool Target::setPort(int value) {
-    try {
-        if (value <= 65535 && value >= 0) { 
-            port = value;
-        } else {
-            ascii::printUserError("Invalid port");
-            return false;
-        }
-        return true;
-    } catch(...) {
-        ascii::printUserError("Invalid port"); 
+    //try {
+   
+    cout << "port: " << value << "\n";
+
+    if (value <= 65535 && value >= 0) { 
+        port = value;
+    } else {
+        ascii::printUserError("Invalid port");
         return false;
     }
+    return true;
+    
+    /*} catch(...) {
+        ascii::printUserError("Invalid port"); 
+        return false;
+    }*/
 }
 
 int Target::getPort() {

@@ -68,7 +68,7 @@ void Interface::parse(string expression) {
     } else if (arr[0] == "curl") {
         Curl client;
         client.run(expression);
-    } else if (arr[0] == "exit") {
+    } else if (arr[0] == "exit" || arr[0] == "quit" || arr[0] == "q") {
         exit(0);
     } else {
         ascii::printUserError("Unknown command: " + arr[0]);
