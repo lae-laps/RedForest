@@ -55,7 +55,6 @@ int main() {
         printf("connected to the server..\n");
    
     func(sockfd);
-
     close(sockfd);
 }
 
