@@ -53,7 +53,7 @@ int main() {
     // here we create a TCP style endpoint
     // the make_address() function converts a string version of an IP into ASIO ip
     // we also pass the error code, and if there is an error, the ec will contain the error
-    asio::ip::tcp::endpoint endpoint(asio::ip::make_address("127.0.0.1", ec), 8080);
+    asio::ip::tcp::endpoint endpoint(asio::ip::make_address("142.250.184.14", ec), 80);
 
     // we create a NETWORKING socket
     // we asociate it to our ASIO object
@@ -92,16 +92,13 @@ int main() {
         // asio buffers take the content and lenght as shown below
         socket.write_some(asio::buffer(httpRequest.data(), httpRequest.size()), ec);
 
-        // we join the ASIO context thread if it is joinable
         context.stop();
         if (thrContext.joinable()) {
             thrContext.join();
         }
 
     }
-    // we detach the ASIO context thread after using it
-    // thrContext.detach();
-
+    //thrContext.detach();
     return 0;
 }
 

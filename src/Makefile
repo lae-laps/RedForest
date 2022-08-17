@@ -10,7 +10,7 @@ redforest: redforest.cpp
 	${CPP} -c modules/HTTPClient/HttpClient.cpp
 	${CPP} -c lib/Target.cpp
 	${CPP} -c redforest.cpp
-	${CPP} -o redforest redforest.o Interface.o Command.o Target.o ascii.o Sock.o TcpClient.o HttpClient.o Curl.o
+	${CPP} -s -o redforest redforest.o Interface.o Command.o Target.o ascii.o Sock.o TcpClient.o HttpClient.o Curl.o
 
 release:
 	# run normal make
