@@ -29,6 +29,12 @@ void Sock::run(string input) {
         client.setHost(target.getHost());
         client.setPort(target.getPort());
         client.send("sdlkmfldsmf");
+ 
+        cout << "\ntarget host: " << target.getHost() << endl;
+        cout << "target port: " << target.getPort() << "\n" << endl;
+
+        cout << "client host: " << client.getHost() << endl;
+        cout << "client port: " << client.getPort() << endl;
     }
 }
 
@@ -50,6 +56,7 @@ bool Sock::parseExpression(string expression) {
     }
     int validHost = target.setHost(arr[1]);
     int validPort = target.setPort(portInt);
+
     if (validHost == 2) {
         return false;
     }

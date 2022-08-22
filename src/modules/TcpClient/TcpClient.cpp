@@ -1,6 +1,8 @@
 // TcpClient.cpp
 
 #include <iostream>
+#include <boost/asio.hpp>
+#include <boost/array.hpp>
 
 #include "../../interface/ascii.hpp"
 #include "TcpClient.hpp"
@@ -37,6 +39,24 @@ int TcpClient::getPort() {
 
 int TcpClient::send(string message) {
     try {
+        boost::asio::io_service ios;
+
+        boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(getHost()), getPort());
+
+        boost::asio::ip::tcp::socket socket(ios);
+
+        socket.connect(endpoint);
+
+        boost::array<char, 128> buf;
+
+        std::copy(message.begin(),message.end(),buf.begin());
+
+        boost::system::error_code error;
+
+        socket.write_some(boost::asio::buffer(buf, message.size()), error);
+
+        socket.close();
+
         return true;
     } catch (...) {
         return false;

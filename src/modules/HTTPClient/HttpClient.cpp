@@ -23,7 +23,7 @@ HttpClient::~HttpClient() {
     // TODO: Do this
 }
 
-vector<char> vBuffer(20 * 1024);
+vector<char> vBuffer(20 * 128);
 
 // this function uses a lambda function
 // it implements a buffer with a fixed size, and recursively grabs a buffer of data
