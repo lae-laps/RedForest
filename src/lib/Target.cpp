@@ -53,8 +53,11 @@ int Target::setHost(string value) {
         return_value = 3;
         ascii::printUserError("Invalid target");
     }
+
+    host = value;                                                                   // actually set the host
+
     setTargetValidity(return_value);
-    return getTargetValidity();
+    return return_value;
 }
 
 string Target::getHost() {

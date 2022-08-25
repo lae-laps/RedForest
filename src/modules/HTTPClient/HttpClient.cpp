@@ -45,6 +45,9 @@ void HttpClient::grabData(asio::ip::tcp::socket& socket) {
 
 void HttpClient::connection(string path, string address, int port) {
 
+    //port = 80;
+    //address = "93.184.216.34";
+
     // we create an Error Handler ( Error Code ) ASIO variable which we will use throuought the program to check for errors.
     // When an exception happens, the error code object defined bellow, will adopt that exception so we can handle or ignore it.
     asio::error_code ec;    

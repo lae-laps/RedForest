@@ -23,6 +23,8 @@ void Curl::run(string expression) {
 
     HttpClient client;
 
+    //cout << "host: " << target.getHost() << "\nport: " << target.getPort() << endl;
+
     client.connection(path, target.getHost(), target.getPort());
 }
 
@@ -67,5 +69,4 @@ bool Curl::parseExpression(string expression) {
     }
     return true;
 }
-
 
