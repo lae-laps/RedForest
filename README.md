@@ -15,6 +15,7 @@ You might need to install these if you want to build the project from source.
 
 ```
 src/
+├── (Makefile)
 ├── interface
 │   ├── ascii.cpp
 │   ├── ascii.hpp
@@ -30,7 +31,6 @@ src/
 ├── lib
 │   ├── Target.cpp
 │   └── Target.hpp
-├── Makefile
 ├── modules
 │   ├── HTTPClient
 │   │   ├── HttpClient.cpp
