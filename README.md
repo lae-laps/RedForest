@@ -4,6 +4,14 @@ This is a project under development
 
 ## Building
 
+### Install
+
+`git clone htpps://github.com/lae-laps/RedForest/`
+
+`cd RedForest/src/`
+
+`make clean`
+
 `make install`
 
 ### Dependencies
