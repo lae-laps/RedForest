@@ -38,7 +38,7 @@ src/
 │   └── TcpClient
 │       ├── TcpClient.cpp
 │       └── TcpClient.hpp
-└── redforest.cpp
+└── redforest.cpp -> main
 ```
 
 ![error displaying image -> media/footer.svg](media/footer.svg?raw=true "Title")
