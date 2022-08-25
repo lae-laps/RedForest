@@ -30,8 +30,8 @@ void Curl::run(string expression) {
 
 bool Curl::parseExpression(string expression) {
 
-    string arr[10];                                                             // split the expression string into an array so that it is easier
-    int i = 0;                                                                  // to parse it and separate the command line arguments
+    string arr[10];                                                             // split the expression string into an array list to
+    int i = 0;                                                                  // parse it and separate the command line arguments
     stringstream ssin(expression);
     while (ssin.good() && i < 4) {
         ssin >> arr[i];
