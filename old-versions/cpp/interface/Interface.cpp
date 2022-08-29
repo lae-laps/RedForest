@@ -68,6 +68,8 @@ void Interface::parse(string expression) {
     } else if (arr[0] == "curl") {
         Curl client;
         client.run(expression);
+    } else if (arr[0] == "clear" || arr[0] == "cls") {
+        ascii::clearScreen();
     } else if (arr[0] == "exit" || arr[0] == "quit" || arr[0] == "q") {
         exit(0);
     } else {

@@ -25,18 +25,37 @@ Target Sock::getTarget() {
 void Sock::run(string input) {
     bool valid = parseExpression(input);
     if (valid) {
+
         TcpClient client;
+        ascii::printInfo("Created client");
+        
         client.setHost(target.getHost());
         client.setPort(target.getPort());
-        client.send("sdlkmfldsmf");
+        
+        ascii::printInfo("Set client settings");
+        
+        //ascii::print("[BLUE]===================[END]\n");
+        //ascii::print("[BLUE]CONNECTION SETTINGS[END]\n");
+        //ascii::print("[BLUE]=================[END]\n");
 
+        cout << "\n";
+        
+        ascii::print(" [GREEN]host: [END]" + client.getHost() + "\n");
+        ascii::print(" [GREEN]port: [END]" + to_string(client.getPort()) + "\n");
+
+        cout << "\n";
+
+        ascii::printInfo("Sending HTTP request...");
+        
+        client.send("sdlkmfldsmf");
+        
         /* 
         DEBUG:
-
+        
         cout << "====================================\n";
         cout << "\ntarget host: " << target.getHost() << endl;
         cout << "target port: " << target.getPort() << "\n" << endl;
-
+        
         cout << "client host: " << client.getHost() << endl;
         cout << "client port: " << client.getPort() << endl;
         */

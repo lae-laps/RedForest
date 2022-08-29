@@ -14,7 +14,7 @@ Target::Target() {
 bool Target::setPort(int value) {
     try {
        
-        cout << "port: " << value << "\n";
+        //cout << "port: " << value << "\n";                                // DEBUG
 
         if (value <= 65535 && value >= 0) { 
             port = value;

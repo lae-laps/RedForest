@@ -34,3 +34,12 @@ void ascii::printInfo(string info) {
     ascii::print("[BLUE][*][END] " + info + "\n");
 }
 
+void ascii::clearScreen() {
+    try {
+        cout << "\033[2J\033[1;1H";
+    } catch(...) {
+        system("clear");
+        // printRuntimeError("Error clearing the screen normally");                     // DEBUG
+    }
+}
+
