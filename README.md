@@ -4,7 +4,9 @@ This is a project under development
 
 ## Building
 
-### Install
+### c++
+
+#### Install
 
 `git clone htpps://github.com/lae-laps/RedForest/`
 
@@ -14,12 +16,12 @@ This is a project under development
 
 `make install`
 
-### Dependencies
+#### Dependencies
 
 The project uses the [boost](https://www.boost.org/) and [ASIO](https://www.boost.org/doc/libs/1_75_0/doc/html/boost_asio.html) libraries.
 You might need to install these if you want to build the project from source.
 
-### Building structure
+#### Building structure
 
 ```
 src/
