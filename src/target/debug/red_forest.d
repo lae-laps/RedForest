@@ -1,0 +1,1 @@
+/home/arch/workspace/RedForest/src/target/debug/red_forest: /home/arch/workspace/RedForest/src/src/interface/ascii_utils.rs /home/arch/workspace/RedForest/src/src/interface.rs /home/arch/workspace/RedForest/src/src/main.rs
